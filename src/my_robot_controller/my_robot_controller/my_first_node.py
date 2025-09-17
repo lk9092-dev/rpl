@@ -1,12 +1,21 @@
 import rclpy
-import fromrclpy.node import node
+from rclpy.node import Node
 
-class mynode(node):
-        def _init_(self):
-            super()._init_("first_node")
+
+class mynode(Node):
+
+    def __init__(self):
+        super().__init__("first_node")
+        self.get_logger().info("hello ros2")
+
+
 def main(args=None):
     rclpy.init(args=args)
-
+    node=mynode()
+    rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
-if_name_=='_main_':
+
+
+if __name__ == "__main__":
     main()
